@@ -4,6 +4,7 @@ import com.polarbookshop.catalogservice.domain.Book;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,6 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest (
 		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
+@ActiveProfiles("integration")
 public class CatalogServiceApplicationTests {
 
 	private final WebTestClient webTestClient;
@@ -23,7 +25,7 @@ public class CatalogServiceApplicationTests {
 	@Test
 	void testPostWhenBookCreated() {
 
-		var book = new Book("1234567891", "Northen lights", "Praveen Vanga", 10.99);
+		var book = Book.of("1234567891", "Northen lights", "Praveen Vanga", 10.99, "Manning");
 		webTestClient
 				.post()
 				.uri("/books")

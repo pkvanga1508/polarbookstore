@@ -24,14 +24,14 @@ public class BookValidationTest {
 
     @Test
     void testAllFieldValuesCorrect() {
-        var book = new Book("1234567890", "Northern Lights", "Praveen Vanga", 15.99);
+        var book = Book.of("1234567890", "Northern Lights", "Praveen Vanga", 15.99, "Manning");
         Set<ConstraintViolation<Book>> violations = validator.validate(book);
         assertThat(violations).isEmpty();
     }
 
     @Test
     void testViolationsFieldValuesIncorrect() {
-        var book = new Book("12345678901", " ", "", -15.99);
+        var book = Book.of("12345678901", " ", "", -15.99, "Manning");
         Set<ConstraintViolation<Book>> violations = validator.validate(book);
         assertThat(violations).isNotEmpty();
         assertThat(violations).hasSize(4);
