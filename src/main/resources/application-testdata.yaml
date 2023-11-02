@@ -41,4 +41,4 @@ management:
 polar:
   greeting: Welcome to local book catalog!
   testdata:
-    enabled: false
+    enabled: true
